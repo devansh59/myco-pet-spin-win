@@ -4,15 +4,26 @@
   box-sizing: border-box; 
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #FFFFFF 0%, #E8F4FF 50%, #FFFFFF 100%);
   color: #000000;
-  overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .floating-bg {
@@ -30,81 +41,34 @@ body {
   animation: float 20s infinite ease-in-out;
 }
 
-.float:nth-child(1) { 
-  left: 10%; 
-  top: 20%; 
-  animation-delay: 0s; 
-  animation-duration: 18s; 
-}
-
-.float:nth-child(2) { 
-  left: 80%; 
-  top: 30%; 
-  animation-delay: 2s; 
-  animation-duration: 22s; 
-}
-
-.float:nth-child(3) { 
-  left: 60%; 
-  top: 60%; 
-  animation-delay: 4s; 
-  animation-duration: 20s; 
-}
-
-.float:nth-child(4) { 
-  left: 20%; 
-  top: 70%; 
-  animation-delay: 6s; 
-  animation-duration: 24s; 
-}
-
-.float:nth-child(5) { 
-  left: 85%; 
-  top: 80%; 
-  animation-delay: 8s; 
-  animation-duration: 19s; 
-}
-
-.float:nth-child(6) { 
-  left: 40%; 
-  top: 10%; 
-  animation-delay: 10s; 
-  animation-duration: 21s; 
-}
+.float:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 18s; }
+.float:nth-child(2) { left: 80%; top: 30%; animation-delay: 2s; animation-duration: 22s; }
+.float:nth-child(3) { left: 60%; top: 60%; animation-delay: 4s; animation-duration: 20s; }
+.float:nth-child(4) { left: 20%; top: 70%; animation-delay: 6s; animation-duration: 24s; }
+.float:nth-child(5) { left: 85%; top: 80%; animation-delay: 8s; animation-duration: 19s; }
+.float:nth-child(6) { left: 40%; top: 10%; animation-delay: 10s; animation-duration: 21s; }
 
 @keyframes float {
-  0%, 100% { 
-    transform: translate(0, 0) rotate(0deg); 
-  }
-  25% { 
-    transform: translate(30px, -30px) rotate(5deg); 
-  }
-  50% { 
-    transform: translate(-20px, 20px) rotate(-5deg); 
-  }
-  75% { 
-    transform: translate(20px, 30px) rotate(3deg); 
-  }
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -30px) rotate(5deg); }
+  50% { transform: translate(-20px, 20px) rotate(-5deg); }
+  75% { transform: translate(20px, 30px) rotate(3deg); }
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   width: 100%;
   padding: 20px;
   position: relative;
   z-index: 1;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  margin: 0 auto;
 }
 
 .logo {
-  width: 260px;
+  width: 240px;
   max-width: 90%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   filter: drop-shadow(0 4px 12px rgba(0, 127, 255, 0.2));
   animation: fadeIn 1s;
 }
@@ -112,47 +76,48 @@ body {
 .title {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  margin: 8px 0;
+  gap: 5px;
+  margin: 15px 0;
   animation: fadeIn 1s 0.2s both;
 }
 
 .title span:first-child {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #005099;
   font-weight: 600;
 }
 
 .highlight {
-  font-size: 2rem;
+  font-size: 1.9rem;
   background: linear-gradient(135deg, #007FFF, #005099);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .title span:last-child {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   animation: bounce 2s infinite;
 }
 
 .subtitle {
   font-size: 1rem;
   color: #005099;
-  margin: 8px 0 15px;
+  margin: 10px 0 20px;
   animation: fadeIn 1s 0.4s both;
 }
 
 .wheel-section {
   background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(123,205,255,0.15));
-  padding: 25px 20px;
+  padding: 25px 20px 30px;
   border-radius: 30px;
   box-shadow: 0 15px 40px rgba(0, 127, 255, 0.2);
   border: 3px solid rgba(0, 127, 255, 0.3);
   animation: fadeIn 1s 0.6s both;
   position: relative;
-  overflow: hidden;
+  margin: 20px 0;
 }
 
 .wheel-section::before {
@@ -164,31 +129,48 @@ body {
   height: 200%;
   background: radial-gradient(circle, rgba(123, 205, 255, 0.1) 0%, transparent 70%);
   animation: rotate 30s linear infinite;
+  pointer-events: none;
 }
 
 .paws {
-  font-size: 1.8rem;
-  margin: 8px 0;
+  font-size: 1.7rem;
+  margin: 10px 0;
   animation: bounce 3s infinite;
+  position: relative;
+  z-index: 2;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: #005099;
-  margin: 8px 0 15px;
+  margin: 10px 0 20px;
   font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+
+.wheel-container-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .wheel-wrap {
   position: relative;
   display: inline-block;
-  margin: 15px 0;
 }
 
 .glow {
   position: absolute;
-  inset: -30px;
-  background: radial-gradient(circle, rgba(0,127,255,0.3), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(0,127,255,0.25), transparent 70%);
   border-radius: 50%;
   animation: pulse 3s infinite;
   pointer-events: none;
@@ -196,7 +178,7 @@ h2 {
 
 .arrow {
   position: absolute;
-  top: -35px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.5rem;
@@ -208,19 +190,15 @@ h2 {
 }
 
 @keyframes arrowBounce {
-  0%, 100% { 
-    transform: translateX(-50%) translateY(0); 
-  }
-  50% { 
-    transform: translateX(-50%) translateY(-8px); 
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
 }
 
 #wheel {
   display: block;
   border-radius: 50%;
   box-shadow: 0 0 0 12px #005099, 0 0 0 15px #007FFF, 0 15px 40px rgba(0, 127, 255, 0.4);
-  transition: transform 7s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -234,9 +212,11 @@ h2 {
 }
 
 footer {
-  margin-top: 12px;
+  margin-top: 20px;
   font-size: 0.85rem;
   color: #000000;
+  position: relative;
+  z-index: 2;
 }
 
 footer strong { 
@@ -245,99 +225,47 @@ footer strong {
 }
 
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes bounce {
-  0%, 100% { 
-    transform: translateY(0); 
-  }
-  50% { 
-    transform: translateY(-10px); 
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    opacity: 0.3; 
-  }
-  50% { 
-    opacity: 0.5; 
-  }
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.4; }
 }
 
 @keyframes rotate {
-  from { 
-    transform: rotate(0deg); 
-  }
-  to { 
-    transform: rotate(360deg); 
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {
-  .logo { 
-    width: 200px; 
-  }
-  .title span:first-child { 
-    font-size: 1.1rem; 
-  }
-  .highlight { 
-    font-size: 1.6rem; 
-  }
-  .title span:last-child { 
-    font-size: 1.4rem; 
-  }
-  .subtitle { 
-    font-size: 0.9rem; 
-  }
-  h2 { 
-    font-size: 1.5rem; 
-  }
-  #wheel { 
-    width: 380px; 
-    height: 380px; 
-  }
-  .arrow { 
-    font-size: 2rem; 
-    top: -30px; 
-  }
-  .paws { 
-    font-size: 1.5rem; 
-  }
+  .logo { width: 200px; }
+  .title span:first-child { font-size: 1.1rem; }
+  .highlight { font-size: 1.6rem; }
+  .title span:last-child { font-size: 1.4rem; }
+  .subtitle { font-size: 0.95rem; }
+  h2 { font-size: 1.5rem; }
+  #wheel { width: 350px; height: 350px; }
+  .glow { width: 420px; height: 420px; }
+  .arrow { font-size: 2rem; top: -25px; }
+  .paws { font-size: 1.5rem; }
 }
 
 @media (max-width: 480px) {
-  .logo { 
-    width: 180px; 
-  }
-  .title span:first-child { 
-    font-size: 1rem; 
-  }
-  .highlight { 
-    font-size: 1.4rem; 
-  }
-  .title span:last-child { 
-    font-size: 1.2rem; 
-  }
-  .subtitle { 
-    font-size: 0.85rem; 
-  }
-  h2 { 
-    font-size: 1.3rem; 
-  }
-  #wheel { 
-    width: 320px; 
-    height: 320px; 
-  }
-  .wheel-section { 
-    padding: 20px 15px; 
-  }
+  .logo { width: 180px; }
+  .title span:first-child { font-size: 1rem; }
+  .highlight { font-size: 1.4rem; }
+  .title span:last-child { font-size: 1.2rem; }
+  .subtitle { font-size: 0.9rem; }
+  h2 { font-size: 1.3rem; }
+  #wheel { width: 300px; height: 300px; }
+  .glow { width: 370px; height: 370px; }
+  .wheel-section { padding: 20px 15px 25px; }
+  .wheel-container-wrapper { padding: 15px; }
 }
