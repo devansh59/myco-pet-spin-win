@@ -62,7 +62,7 @@ body {
 }
 
 .container {
-  transform: scale(1.15);
+  transform: scale(1.00);
   max-width: 900px;
   width: 100%;
   padding: 20px;
