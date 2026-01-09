@@ -49,7 +49,7 @@ class Confetti {
       this.ctx.translate(p.x, p.y);
       this.ctx.rotate(p.rotation * Math.PI / 180);
       this.ctx.fillStyle = p.color;
-      this.ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      this.ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
       this.ctx.restore();
     });
     
