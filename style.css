@@ -1,4 +1,8 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,22 +30,65 @@ body {
   animation: float 20s infinite ease-in-out;
 }
 
-.float:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 18s; }
-.float:nth-child(2) { left: 80%; top: 30%; animation-delay: 2s; animation-duration: 22s; }
-.float:nth-child(3) { left: 60%; top: 60%; animation-delay: 4s; animation-duration: 20s; }
-.float:nth-child(4) { left: 20%; top: 70%; animation-delay: 6s; animation-duration: 24s; }
-.float:nth-child(5) { left: 85%; top: 80%; animation-delay: 8s; animation-duration: 19s; }
-.float:nth-child(6) { left: 40%; top: 10%; animation-delay: 10s; animation-duration: 21s; }
+.float:nth-child(1) { 
+  left: 10%; 
+  top: 20%; 
+  animation-delay: 0s; 
+  animation-duration: 18s; 
+}
+
+.float:nth-child(2) { 
+  left: 80%; 
+  top: 30%; 
+  animation-delay: 2s; 
+  animation-duration: 22s; 
+}
+
+.float:nth-child(3) { 
+  left: 60%; 
+  top: 60%; 
+  animation-delay: 4s; 
+  animation-duration: 20s; 
+}
+
+.float:nth-child(4) { 
+  left: 20%; 
+  top: 70%; 
+  animation-delay: 6s; 
+  animation-duration: 24s; 
+}
+
+.float:nth-child(5) { 
+  left: 85%; 
+  top: 80%; 
+  animation-delay: 8s; 
+  animation-duration: 19s; 
+}
+
+.float:nth-child(6) { 
+  left: 40%; 
+  top: 10%; 
+  animation-delay: 10s; 
+  animation-duration: 21s; 
+}
 
 @keyframes float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(30px, -30px) rotate(5deg); }
-  50% { transform: translate(-20px, 20px) rotate(-5deg); }
-  75% { transform: translate(20px, 30px) rotate(3deg); }
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+  }
+  25% { 
+    transform: translate(30px, -30px) rotate(5deg); 
+  }
+  50% { 
+    transform: translate(-20px, 20px) rotate(-5deg); 
+  }
+  75% { 
+    transform: translate(20px, 30px) rotate(3deg); 
+  }
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1100px;
   width: 100%;
   padding: 20px;
   position: relative;
@@ -55,9 +102,9 @@ body {
 }
 
 .logo {
-  width: 280px;
+  width: 260px;
   max-width: 90%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   filter: drop-shadow(0 4px 12px rgba(0, 127, 255, 0.2));
   animation: fadeIn 1s;
 }
@@ -65,19 +112,19 @@ body {
 .title {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  margin: 10px 0;
+  gap: 3px;
+  margin: 8px 0;
   animation: fadeIn 1s 0.2s both;
 }
 
 .title span:first-child {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #005099;
   font-weight: 600;
 }
 
 .highlight {
-  font-size: 2.2rem;
+  font-size: 2rem;
   background: linear-gradient(135deg, #007FFF, #005099);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -86,20 +133,20 @@ body {
 }
 
 .title span:last-child {
-  font-size: 2rem;
+  font-size: 1.8rem;
   animation: bounce 2s infinite;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #005099;
-  margin: 10px 0 20px;
+  margin: 8px 0 15px;
   animation: fadeIn 1s 0.4s both;
 }
 
 .wheel-section {
   background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(123,205,255,0.15));
-  padding: 30px 20px;
+  padding: 25px 20px;
   border-radius: 30px;
   box-shadow: 0 15px 40px rgba(0, 127, 255, 0.2);
   border: 3px solid rgba(0, 127, 255, 0.3);
@@ -120,22 +167,22 @@ body {
 }
 
 .paws {
-  font-size: 2rem;
-  margin: 10px 0;
+  font-size: 1.8rem;
+  margin: 8px 0;
   animation: bounce 3s infinite;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #005099;
-  margin: 10px 0 20px;
+  margin: 8px 0 15px;
   font-weight: 700;
 }
 
 .wheel-wrap {
   position: relative;
   display: inline-block;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .glow {
@@ -144,82 +191,51 @@ h2 {
   background: radial-gradient(circle, rgba(0,127,255,0.3), transparent 70%);
   border-radius: 50%;
   animation: pulse 3s infinite;
+  pointer-events: none;
 }
 
 .arrow {
   position: absolute;
-  top: -40px;
+  top: -35px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #005099;
   z-index: 10;
   filter: drop-shadow(0 4px 8px rgba(0, 127, 255, 0.4));
   animation: arrowBounce 2s infinite;
+  pointer-events: none;
 }
 
 @keyframes arrowBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-8px); }
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+  }
+  50% { 
+    transform: translateX(-50%) translateY(-8px); 
+  }
 }
 
 #wheel {
   display: block;
   border-radius: 50%;
-  box-shadow: 
-    0 0 0 12px #005099, 
-    0 0 0 15px #007FFF, 
-    0 15px 40px rgba(0, 127, 255, 0.4);
+  box-shadow: 0 0 0 12px #005099, 0 0 0 15px #007FFF, 0 15px 40px rgba(0, 127, 255, 0.4);
   transition: transform 7s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-}
-
-button {
-  padding: 18px 50px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #007FFF, #005099);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 50px;
   cursor: pointer;
-  box-shadow: 
-    0 10px 25px rgba(0, 127, 255, 0.4), 
-    inset 0 -3px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.3s;
-  margin: 20px 0 10px;
-  position: relative;
-  overflow: hidden;
 }
 
-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
+#wheel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 12px #005099, 0 0 0 15px #007FFF, 0 18px 45px rgba(0, 127, 255, 0.5);
 }
 
-button:hover::before {
-  left: 100%;
-}
-
-button:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 127, 255, 0.5);
-}
-
-button:disabled {
-  opacity: 0.6;
+#wheel.spinning {
   cursor: not-allowed;
-  transform: none;
 }
 
 footer {
-  margin-top: 15px;
-  font-size: 0.9rem;
+  margin-top: 12px;
+  font-size: 0.85rem;
   color: #000000;
 }
 
@@ -229,33 +245,99 @@ footer strong {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.5; }
+  0%, 100% { 
+    opacity: 0.3; 
+  }
+  50% { 
+    opacity: 0.5; 
+  }
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
 }
 
 @media (max-width: 768px) {
-  .logo { width: 220px; }
-  .title span:first-child { font-size: 1.2rem; }
-  .highlight { font-size: 1.8rem; }
-  .title span:last-child { font-size: 1.6rem; }
-  .subtitle { font-size: 1rem; }
-  h2 { font-size: 1.6rem; }
-  #wheel { width: 300px; height: 300px; }
-  button { padding: 15px 40px; font-size: 1.3rem; }
-  .arrow { font-size: 2.5rem; top: -35px; }
+  .logo { 
+    width: 200px; 
+  }
+  .title span:first-child { 
+    font-size: 1.1rem; 
+  }
+  .highlight { 
+    font-size: 1.6rem; 
+  }
+  .title span:last-child { 
+    font-size: 1.4rem; 
+  }
+  .subtitle { 
+    font-size: 0.9rem; 
+  }
+  h2 { 
+    font-size: 1.5rem; 
+  }
+  #wheel { 
+    width: 380px; 
+    height: 380px; 
+  }
+  .arrow { 
+    font-size: 2rem; 
+    top: -30px; 
+  }
+  .paws { 
+    font-size: 1.5rem; 
+  }
+}
+
+@media (max-width: 480px) {
+  .logo { 
+    width: 180px; 
+  }
+  .title span:first-child { 
+    font-size: 1rem; 
+  }
+  .highlight { 
+    font-size: 1.4rem; 
+  }
+  .title span:last-child { 
+    font-size: 1.2rem; 
+  }
+  .subtitle { 
+    font-size: 0.85rem; 
+  }
+  h2 { 
+    font-size: 1.3rem; 
+  }
+  #wheel { 
+    width: 320px; 
+    height: 320px; 
+  }
+  .wheel-section { 
+    padding: 20px 15px; 
+  }
 }
