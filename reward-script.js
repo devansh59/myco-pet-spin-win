@@ -3,7 +3,7 @@ class Confetti {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.particles = [];
-    this.colors = ['#6b9b37', '#2d5016', '#f4a261', '#e76f51', '#2a9d8f', '#e9c46a'];
+    this.colors = ['#007FFF', '#005099', '#7BCDFF', '#FFFFFF'];
     
     this.resize();
     window.addEventListener('resize', () => this.resize());
@@ -61,11 +61,6 @@ window.addEventListener('load', () => {
   const canvas = document.getElementById('confetti');
   new Confetti(canvas);
   
-  // Optional: Add celebration sound
-  // const celebrationSound = new Audio('celebration.mp3');
-  // celebrationSound.play();
-  
-  // Stop confetti after 10 seconds to improve performance
   setTimeout(() => {
     canvas.style.opacity = '0';
     canvas.style.transition = 'opacity 2s';
