@@ -43,7 +43,7 @@ function drawWheel(rotation = 0) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 24px Arial';
+    ctx.font = 'bold 22px Arial';
     ctx.shadowColor = 'rgba(0,0,0,0.4)';
     ctx.shadowBlur = 4;
     ctx.fillText(segment.text, 0, -radius * 0.65);
@@ -51,9 +51,9 @@ function drawWheel(rotation = 0) {
   });
   
   ctx.beginPath();
-  ctx.arc(0, 0, 70, 0, 2 * Math.PI);
+  ctx.arc(0, 0, 65, 0, 2 * Math.PI);
   
-  const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 70);
+  const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 65);
   gradient.addColorStop(0, '#007FFF');
   gradient.addColorStop(1, '#005099');
   ctx.fillStyle = gradient;
@@ -64,20 +64,20 @@ function drawWheel(rotation = 0) {
   ctx.stroke();
   
   ctx.beginPath();
-  ctx.arc(0, 0, 60, 0, 2 * Math.PI);
+  ctx.arc(0, 0, 55, 0, 2 * Math.PI);
   ctx.strokeStyle = 'rgba(0,0,0,0.2)';
   ctx.lineWidth = 3;
   ctx.stroke();
   
   ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 26px Arial';
+  ctx.font = 'bold 24px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.shadowColor = 'rgba(0,0,0,0.5)';
   ctx.shadowBlur = 8;
   ctx.fillText('SPIN', 0, -5);
   
-  ctx.font = 'bold 18px Arial';
+  ctx.font = 'bold 16px Arial';
   ctx.fillText('NOW', 0, 15);
   
   ctx.restore();
@@ -93,7 +93,7 @@ function isClickOnCenter(x, y, canvas) {
   const clickY = (y - rect.top) * (canvas.height / rect.height);
   
   const distance = Math.sqrt(Math.pow(clickX - centerX, 2) + Math.pow(clickY - centerY, 2));
-  return distance <= 70;
+  return distance <= 65;
 }
 
 document.getElementById('wheel').addEventListener('click', function(e) {
