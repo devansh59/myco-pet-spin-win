@@ -4,6 +4,12 @@
   box-sizing: border-box; 
 }
 
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -12,10 +18,12 @@ html, body {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: linear-gradient(135deg, #FFFFFF 0%, #E8F4FF 50%, #FFFFFF 100%);
   color: #000000;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .page-wrapper {
@@ -23,7 +31,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 0;
+  padding: 20px 15px;
 }
 
 #confetti {
@@ -42,30 +50,29 @@ body {
 
 .float {
   position: absolute;
-  font-size: 2rem;
+  font-size: 1.5rem;
   opacity: 0.08;
   animation: float 20s infinite ease-in-out;
 }
 
-.float:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 18s; }
-.float:nth-child(2) { left: 80%; top: 30%; animation-delay: 2s; animation-duration: 22s; }
-.float:nth-child(3) { left: 60%; top: 60%; animation-delay: 4s; animation-duration: 20s; }
-.float:nth-child(4) { left: 20%; top: 70%; animation-delay: 6s; animation-duration: 24s; }
-.float:nth-child(5) { left: 85%; top: 80%; animation-delay: 8s; animation-duration: 19s; }
-.float:nth-child(6) { left: 40%; top: 10%; animation-delay: 10s; animation-duration: 21s; }
+.float:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s; animation-duration: 18s; }
+.float:nth-child(2) { left: 85%; top: 25%; animation-delay: 2s; animation-duration: 22s; }
+.float:nth-child(3) { left: 65%; top: 55%; animation-delay: 4s; animation-duration: 20s; }
+.float:nth-child(4) { left: 15%; top: 65%; animation-delay: 6s; animation-duration: 24s; }
+.float:nth-child(5) { left: 80%; top: 75%; animation-delay: 8s; animation-duration: 19s; }
+.float:nth-child(6) { left: 35%; top: 10%; animation-delay: 10s; animation-duration: 21s; }
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(30px, -30px) rotate(5deg); }
-  50% { transform: translate(-20px, 20px) rotate(-5deg); }
-  75% { transform: translate(20px, 30px) rotate(3deg); }
+  25% { transform: translate(20px, -20px) rotate(5deg); }
+  50% { transform: translate(-15px, 15px) rotate(-5deg); }
+  75% { transform: translate(15px, 20px) rotate(3deg); }
 }
 
 .container {
-  transform: scale(1.00);
-  max-width: 900px;
+  max-width: 100%;
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -73,24 +80,24 @@ body {
 }
 
 .logo {
-  width: 240px;
-  max-width: 90%;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 4px 12px rgba(0, 127, 255, 0.2));
+  width: 180px;
+  max-width: 85%;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 3px 10px rgba(0, 127, 255, 0.2));
   animation: fadeIn 1s;
 }
 
 .badge {
   position: relative;
-  width: 110px;
-  height: 110px;
-  margin: 20px auto;
+  width: 100px;
+  height: 100px;
+  margin: 18px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #007FFF, #005099);
   border-radius: 50%;
-  box-shadow: 0 12px 30px rgba(0, 127, 255, 0.4);
+  box-shadow: 0 10px 28px rgba(0, 127, 255, 0.4);
   animation: fadeIn 1s 0.2s both;
 }
 
@@ -113,48 +120,53 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 20px 0;
+  margin: 18px 0;
   animation: fadeIn 1s 0.3s both;
 }
 
 .title span:first-child {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: #005099;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .highlight {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   background: linear-gradient(135deg, #007FFF, #005099);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 800;
   line-height: 1.2;
+  padding: 0 5px;
 }
 
 .title span:last-child {
-  font-size: 2rem;
+  font-size: 1.7rem;
   animation: bounce 2s infinite;
+  margin-top: 4px;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #005099;
-  margin: 15px 0 25px;
+  margin: 15px 0 22px;
   animation: fadeIn 1s 0.4s both;
+  line-height: 1.5;
+  padding: 0 10px;
 }
 
 .cta {
   background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(123,205,255,0.15));
-  padding: 35px 30px;
-  border-radius: 30px;
-  box-shadow: 0 15px 40px rgba(0, 127, 255, 0.25);
-  border: 3px solid rgba(0, 127, 255, 0.3);
+  padding: 28px 22px;
+  border-radius: 28px;
+  box-shadow: 0 12px 35px rgba(0, 127, 255, 0.25);
+  border: 2px solid rgba(0, 127, 255, 0.3);
   animation: fadeIn 1s 0.5s both;
   position: relative;
   overflow: hidden;
-  max-width: 650px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -171,7 +183,7 @@ body {
 }
 
 .icon {
-  font-size: 3rem;
+  font-size: 2.8rem;
   margin-bottom: 15px;
   animation: heartbeat 1.5s infinite;
   position: relative;
@@ -185,38 +197,42 @@ body {
 }
 
 .cta h2 {
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: #005099;
   margin-bottom: 12px;
   position: relative;
   z-index: 2;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .cta p {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #000000;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
   position: relative;
   z-index: 2;
   line-height: 1.5;
+  padding: 0 5px;
 }
 
 .btn {
-  padding: 18px 45px;
-  font-size: 1.3rem;
+  padding: 16px 35px;
+  font-size: 1.15rem;
   font-weight: 700;
   background: linear-gradient(135deg, #007FFF, #005099);
   color: #FFFFFF;
   text-decoration: none;
   border-radius: 50px;
-  box-shadow: 0 12px 30px rgba(0, 127, 255, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 127, 255, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   display: inline-block;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
   position: relative;
   z-index: 2;
   overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn::before {
@@ -230,44 +246,41 @@ body {
   transition: left 0.5s;
 }
 
-.btn:hover::before {
-  left: 100%;
-}
-
-.btn:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 127, 255, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+.btn:active {
+  transform: scale(0.98);
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   position: relative;
   z-index: 2;
 }
 
 .badges span {
-  padding: 9px 20px;
-  background: rgba(0, 127, 255, 0.1);
+  padding: 8px 16px;
+  background: rgba(0, 127, 255, 0.12);
   border: 2px solid rgba(0, 127, 255, 0.3);
   border-radius: 20px;
   font-weight: 600;
   color: #005099;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
-.badges span:hover {
-  background: rgba(0, 127, 255, 0.2);
-  transform: translateY(-2px);
+.badges span:active {
+  transform: scale(0.95);
 }
 
 footer {
-  margin-top: 25px;
-  font-size: 0.95rem;
+  margin-top: 22px;
+  font-size: 0.85rem;
   color: #000000;
+  line-height: 1.4;
+  padding: 0 10px;
 }
 
 footer strong { 
@@ -276,13 +289,13 @@ footer strong {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes pulse {
@@ -295,30 +308,117 @@ footer strong {
   to { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) {
+/* ===== TABLET (Portrait) ===== */
+@media (min-width: 481px) and (max-width: 768px) {
   .logo { width: 200px; }
-  .badge { width: 95px; height: 95px; }
-  .badge span { font-size: 3rem; }
-  .title span:first-child { font-size: 1.3rem; }
-  .highlight { font-size: 1.8rem; }
-  .title span:last-child { font-size: 1.6rem; }
-  .subtitle { font-size: 1rem; }
-  .cta { padding: 30px 25px; }
-  .cta h2 { font-size: 1.6rem; }
+  .badge { width: 110px; height: 110px; }
+  .badge span { font-size: 3.8rem; }
+  .title span:first-child { font-size: 1.5rem; }
+  .highlight { font-size: 2rem; }
+  .title span:last-child { font-size: 1.8rem; }
+  .subtitle { font-size: 1.05rem; }
+  .cta { padding: 32px 26px; }
+  .cta h2 { font-size: 1.7rem; }
   .cta p { font-size: 1rem; }
-  .btn { padding: 16px 38px; font-size: 1.2rem; }
-  .badges span { padding: 8px 16px; font-size: 0.85rem; }
+  .btn { padding: 18px 42px; font-size: 1.25rem; }
+  .badges span { padding: 9px 18px; font-size: 0.9rem; }
+  .icon { font-size: 3rem; }
 }
 
-@media (max-width: 480px) {
-  .logo { width: 180px; }
-  .badge { width: 85px; height: 85px; }
-  .badge span { font-size: 2.5rem; }
+/* ===== TABLET (Landscape) & Small Desktop ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container { max-width: 650px; }
+  .logo { width: 220px; }
+  .badge { width: 120px; height: 120px; }
+  .badge span { font-size: 4.2rem; }
+  .title span:first-child { font-size: 1.6rem; }
+  .highlight { font-size: 2.2rem; }
+  .title span:last-child { font-size: 2rem; }
+  .subtitle { font-size: 1.1rem; }
+  .cta { padding: 35px 30px; max-width: 600px; }
+  .cta h2 { font-size: 1.9rem; }
+  .cta p { font-size: 1.05rem; }
+  .btn { padding: 20px 50px; font-size: 1.3rem; }
+  .badges span { padding: 10px 22px; font-size: 0.9rem; }
+  .icon { font-size: 3.5rem; }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1025px) {
+  .container { max-width: 750px; transform: scale(1.15); }
+  .logo { width: 240px; }
+  .badge { width: 130px; height: 130px; }
+  .badge span { font-size: 4.5rem; }
+  .title span:first-child { font-size: 1.6rem; }
+  .highlight { font-size: 2.2rem; }
+  .title span:last-child { font-size: 2rem; }
+  .subtitle { font-size: 1.1rem; }
+  .cta { padding: 40px 35px; max-width: 100%; }
+  .cta h2 { font-size: 1.9rem; }
+  .cta p { font-size: 1.05rem; }
+  .btn { padding: 20px 50px; font-size: 1.3rem; }
+  .badges span { padding: 10px 22px; font-size: 0.9rem; }
+  .icon { font-size: 3.5rem; }
+  .float { font-size: 2rem; }
+}
+
+/* ===== LARGE DESKTOP ===== */
+@media (min-width: 1440px) {
+  .container { max-width: 800px; transform: scale(1.2); }
+  .logo { width: 260px; }
+}
+
+/* ===== VERY SMALL PHONES ===== */
+@media (max-width: 360px) {
+  .logo { width: 160px; margin-bottom: 15px; }
+  .badge { width: 90px; height: 90px; margin: 15px auto; }
+  .badge span { font-size: 3rem; }
+  .title { gap: 6px; margin: 15px 0; }
   .title span:first-child { font-size: 1.2rem; }
-  .highlight { font-size: 1.6rem; }
+  .highlight { font-size: 1.5rem; }
   .title span:last-child { font-size: 1.4rem; }
-  .subtitle { font-size: 0.95rem; }
-  .cta { padding: 25px 20px; }
+  .subtitle { font-size: 0.9rem; margin: 12px 0 18px; }
+  .cta { padding: 24px 18px; }
   .cta h2 { font-size: 1.4rem; }
-  .btn { padding: 14px 32px; font-size: 1.1rem; }
+  .cta p { font-size: 0.9rem; }
+  .btn { padding: 14px 30px; font-size: 1.05rem; }
+  .badges { gap: 8px; }
+  .badges span { padding: 7px 14px; font-size: 0.8rem; }
+  .icon { font-size: 2.5rem; }
+  footer { font-size: 0.8rem; margin-top: 18px; }
+}
+
+/* ===== LANDSCAPE MODE (PHONES) ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .page-wrapper { padding: 10px; }
+  .logo { width: 140px; margin-bottom: 8px; }
+  .badge { width: 80px; height: 80px; margin: 10px auto; }
+  .badge span { font-size: 2.5rem; }
+  .title { gap: 4px; margin: 8px 0; }
+  .title span:first-child { font-size: 1rem; }
+  .highlight { font-size: 1.3rem; }
+  .title span:last-child { font-size: 1.2rem; }
+  .subtitle { font-size: 0.85rem; margin: 8px 0 12px; }
+  .cta { padding: 18px 15px; }
+  .cta h2 { font-size: 1.2rem; margin-bottom: 8px; }
+  .cta p { font-size: 0.85rem; margin-bottom: 15px; }
+  .btn { padding: 12px 28px; font-size: 1rem; margin-bottom: 15px; }
+  .badges { gap: 6px; }
+  .badges span { padding: 6px 12px; font-size: 0.75rem; }
+  .icon { font-size: 2rem; margin-bottom: 10px; }
+  footer { font-size: 0.75rem; margin-top: 12px; }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .badges span {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
