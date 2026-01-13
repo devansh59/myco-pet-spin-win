@@ -18,7 +18,8 @@ class Confetti {
   }
   
   createParticles() {
-    for (let i = 0; i < 150; i++) {
+    const particleCount = window.innerWidth < 768 ? 100 : 150;
+    for (let i = 0; i < particleCount; i++) {
       this.particles.push({
         x: Math.random() * this.canvas.width,
         y: Math.random() * this.canvas.height - this.canvas.height,
