@@ -40,7 +40,7 @@ function drawWheel(rotation = 0) {
     { text: '10% OFF', color: '#007FFF' },
     { text: 'Free Shipping', color: '#7BCDFF' },
     { text: '15% OFF', color: '#005099' },
-    { text: 'Free\nProtect Spray\nNext Order', color: '#007FFF' },
+    { text: 'Free\nProtect\nSpray', color: '#007FFF' },
     { text: 'Buy 2 Get 1', color: '#7BCDFF' }
   ];
   
@@ -76,12 +76,22 @@ function drawWheel(rotation = 0) {
     ctx.fillStyle = '#FFFFFF';
     
     const lines = segment.text.split('\n');
-    const adjustedFontSize = lines.length > 1 ? Math.max(11, Math.floor(fontSize * 0.7)) : fontSize;
+    
+    // Adjust font size based on number of lines
+    let adjustedFontSize;
+    if (lines.length >= 3) {
+      adjustedFontSize = Math.max(10, Math.floor(fontSize * 0.65));
+    } else if (lines.length === 2) {
+      adjustedFontSize = Math.max(12, Math.floor(fontSize * 0.75));
+    } else {
+      adjustedFontSize = fontSize;
+    }
+    
     ctx.font = `bold ${adjustedFontSize}px Arial`;
     ctx.shadowColor = 'rgba(0,0,0,0.4)';
     ctx.shadowBlur = 3;
     
-    const lineHeight = adjustedFontSize * 1.4;
+    const lineHeight = adjustedFontSize * 1.5;
     const totalHeight = (lines.length - 1) * lineHeight;
     const startY = -radius * 0.65 - totalHeight / 2;
     
