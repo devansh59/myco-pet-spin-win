@@ -42,7 +42,7 @@ function drawWheel(rotation = 0) {
     { text: '10% OFF', color: '#007FFF' },
     { text: 'Free Shipping', color: '#7BCDFF' },
     { text: '15% OFF', color: '#005099' },
-    { text: 'Free\n Protect spray\n on next order', color: '#007FFF' },
+    { text: 'Free\nProtect Spray\nNext Order', color: '#007FFF' },
     { text: 'Buy 2 Get 1', color: '#7BCDFF' }
   ];
   
@@ -72,7 +72,7 @@ function drawWheel(rotation = 0) {
     ctx.lineWidth = Math.max(2, wheelSize / 150);
     ctx.stroke();
     
-    // Draw text
+    // Draw text - FIXED FOR MULTI-LINE
     ctx.save();
     const textAngle = startAngle + anglePerSegment / 2;
     ctx.rotate(textAngle + Math.PI / 2);
@@ -82,7 +82,17 @@ function drawWheel(rotation = 0) {
     ctx.font = `bold ${fontSize}px Arial`;
     ctx.shadowColor = 'rgba(0,0,0,0.4)';
     ctx.shadowBlur = 3;
-    ctx.fillText(segment.text, 0, -radius * 0.65);
+    
+    // Handle multi-line text
+    const lines = segment.text.split('\n');
+    const lineHeight = fontSize * 1.2;
+    const totalHeight = (lines.length - 1) * lineHeight;
+    const startY = -radius * 0.65 - totalHeight / 2;
+    
+    lines.forEach((line, lineIndex) => {
+      ctx.fillText(line, 0, startY + (lineIndex * lineHeight));
+    });
+    
     ctx.restore();
   });
   
