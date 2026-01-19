@@ -40,11 +40,10 @@ function drawWheel(rotation = 0) {
   
   const segments = [
     { text: '10% OFF', color: '#007FFF' },
-    { text: 'SAMPLE', color: '#7BCDFF' },
+    { text: 'Free Shipping', color: '#7BCDFF' },
     { text: '15% OFF', color: '#005099' },
-    { text: 'SHIPPING', color: '#007FFF' },
-    { text: '20% OFF', color: '#7BCDFF' },
-    { text: 'GIFT', color: '#005099' }
+    { text: 'Free Protect spray on next order', color: '#007FFF' },
+    { text: 'Buy 2 Get 1', color: '#7BCDFF' }
   ];
   
   const anglePerSegment = (2 * Math.PI) / segments.length;
