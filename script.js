@@ -42,7 +42,7 @@ function drawWheel(rotation = 0) {
     { text: '10% OFF', color: '#007FFF' },
     { text: 'Free Shipping', color: '#7BCDFF' },
     { text: '15% OFF', color: '#005099' },
-    { text: 'Free Protect spray on next order', color: '#007FFF' },
+    { text: 'Free\n Protect spray\n on next order', color: '#007FFF' },
     { text: 'Buy 2 Get 1', color: '#7BCDFF' }
   ];
   
