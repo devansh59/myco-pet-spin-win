@@ -1,7 +1,6 @@
 let isSpinning = false;
-let wheelSize = 280; // Default mobile size
+let wheelSize = 280;
 
-// Detect device and set wheel size
 function setWheelSize() {
   const width = window.innerWidth;
   
@@ -19,7 +18,6 @@ function setWheelSize() {
     wheelSize = 450;
   }
   
-  // Adjust for landscape on mobile
   if (window.innerHeight < 500 && width < 769) {
     wheelSize = 220;
   }
@@ -42,13 +40,11 @@ function drawWheel(rotation = 0) {
     { text: '10% OFF', color: '#007FFF' },
     { text: 'Free Shipping', color: '#7BCDFF' },
     { text: '15% OFF', color: '#005099' },
-    { text: 'Free\nProtect Spray\nNext Order', color: '#007FFF' },
+    { text: 'Free\nSpray\nNext Order', color: '#007FFF' },
     { text: 'Buy 2 Get 1', color: '#7BCDFF' }
   ];
   
   const anglePerSegment = (2 * Math.PI) / segments.length;
-  
-  // Scale font size based on wheel size
   const fontSize = Math.max(14, Math.floor(wheelSize / 20));
   const centerRadius = Math.max(50, Math.floor(wheelSize / 7));
   
@@ -57,7 +53,6 @@ function drawWheel(rotation = 0) {
   ctx.translate(centerX, centerY);
   ctx.rotate(rotation);
   
-  // Draw segments
   segments.forEach((segment, i) => {
     const startAngle = i * anglePerSegment - Math.PI / 2;
     const endAngle = startAngle + anglePerSegment;
@@ -72,20 +67,21 @@ function drawWheel(rotation = 0) {
     ctx.lineWidth = Math.max(2, wheelSize / 150);
     ctx.stroke();
     
-    // Draw text - FIXED FOR MULTI-LINE
+    // Draw text with multi-line support
     ctx.save();
     const textAngle = startAngle + anglePerSegment / 2;
     ctx.rotate(textAngle + Math.PI / 2);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = `bold ${fontSize}px Arial`;
+    
+    const lines = segment.text.split('\n');
+    const adjustedFontSize = lines.length > 1 ? Math.max(11, Math.floor(fontSize * 0.7)) : fontSize;
+    ctx.font = `bold ${adjustedFontSize}px Arial`;
     ctx.shadowColor = 'rgba(0,0,0,0.4)';
     ctx.shadowBlur = 3;
     
-    // Handle multi-line text
-    const lines = segment.text.split('\n');
-    const lineHeight = fontSize * 1.2;
+    const lineHeight = adjustedFontSize * 1.4;
     const totalHeight = (lines.length - 1) * lineHeight;
     const startY = -radius * 0.65 - totalHeight / 2;
     
@@ -110,14 +106,12 @@ function drawWheel(rotation = 0) {
   ctx.lineWidth = Math.max(8, wheelSize / 50);
   ctx.stroke();
   
-  // Inner shadow
   ctx.beginPath();
   ctx.arc(0, 0, centerRadius - 8, 0, 2 * Math.PI);
   ctx.strokeStyle = 'rgba(0,0,0,0.2)';
   ctx.lineWidth = 2;
   ctx.stroke();
   
-  // Center text
   const centerFontSize = Math.max(16, Math.floor(wheelSize / 22));
   ctx.fillStyle = '#FFFFFF';
   ctx.font = `bold ${centerFontSize}px Arial`;
@@ -133,10 +127,8 @@ function drawWheel(rotation = 0) {
   ctx.restore();
 }
 
-// Initialize
 setWheelSize();
 
-// Handle resize
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
@@ -147,7 +139,6 @@ window.addEventListener('resize', () => {
   }, 250);
 });
 
-// Handle orientation change
 window.addEventListener('orientationchange', () => {
   setTimeout(() => {
     if (!isSpinning) {
@@ -168,7 +159,6 @@ function isClickOnCenter(x, y, canvas) {
   return distance <= centerRadius;
 }
 
-// Touch and click events
 const canvas = document.getElementById('wheel');
 
 canvas.addEventListener('click', function(e) {
@@ -202,7 +192,6 @@ function spin() {
   isSpinning = true;
   canvas.classList.add('spinning');
   
-  // Haptic feedback on mobile
   if (navigator.vibrate) {
     navigator.vibrate(50);
   }
@@ -225,7 +214,6 @@ function spin() {
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
-      // Haptic feedback on completion
       if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
