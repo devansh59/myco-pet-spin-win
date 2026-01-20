@@ -236,4 +236,3 @@ function spin() {
   
   animate();
 }
-
