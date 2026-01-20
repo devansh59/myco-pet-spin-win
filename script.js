@@ -254,10 +254,26 @@ function getSelectedSegment(rotation) {
     'Buy 2 Get 1'
   ];
   
+  // Normalize rotation to 0-2π range
   const normalizedRotation = rotation % (2 * Math.PI);
-  const segmentAngle = (2 * Math.PI) / segments.length;
-  const adjustedRotation = (2 * Math.PI - normalizedRotation + Math.PI / 2) % (2 * Math.PI);
-  const selectedIndex = Math.floor(adjustedRotation / segmentAngle) % segments.length;
   
-  return segments[selectedIndex];
+  // Calculate segment size
+  const segmentAngle = (2 * Math.PI) / segments.length;
+  
+  // The arrow points UP (top of wheel)
+  // We need to find which segment is at the top after rotation
+  // Segments start at -π/2 (top) and go clockwise
+  
+  // Calculate which segment is at the top (arrow position)
+  let segmentAtTop = Math.floor((normalizedRotation + Math.PI / 2) / segmentAngle) % segments.length;
+  
+  // Adjust for clockwise rotation
+  segmentAtTop = (segments.length - segmentAtTop) % segments.length;
+  
+  console.log('Final rotation:', rotation);
+  console.log('Normalized rotation:', normalizedRotation);
+  console.log('Segment at top:', segmentAtTop);
+  console.log('Selected reward:', segments[segmentAtTop]);
+  
+  return segments[segmentAtTop];
 }
