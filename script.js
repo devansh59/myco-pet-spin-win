@@ -67,7 +67,6 @@ function drawWheel(rotation = 0) {
     ctx.lineWidth = Math.max(2, wheelSize / 150);
     ctx.stroke();
     
-    // Draw text with multi-line support
     ctx.save();
     const textAngle = startAngle + anglePerSegment / 2;
     ctx.rotate(textAngle + Math.PI / 2);
@@ -77,7 +76,6 @@ function drawWheel(rotation = 0) {
     
     const lines = segment.text.split('\n');
     
-    // Adjust font size based on number of lines
     let adjustedFontSize;
     if (lines.length >= 3) {
       adjustedFontSize = Math.max(10, Math.floor(fontSize * 0.65));
@@ -102,7 +100,6 @@ function drawWheel(rotation = 0) {
     ctx.restore();
   });
   
-  // Draw center circle
   ctx.beginPath();
   ctx.arc(0, 0, centerRadius, 0, 2 * Math.PI);
   
@@ -229,22 +226,22 @@ function spin() {
       }
       
       setTimeout(() => {
-  // Get customer info from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const email = urlParams.get('email') || '';
-  const name = urlParams.get('name') || '';
-  
-  // Calculate which segment won
-  const selectedReward = getSelectedSegment(finalRotation);
-  
-  // Redirect with all info
-  window.location.href = `reward.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&reward=${encodeURIComponent(selectedReward)}`;
-}, 500);
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email') || '';
+        const name = urlParams.get('name') || '';
+        
+        const selectedReward = getSelectedSegment(finalRotation);
+        
+        console.log('Redirecting:', { email, name, reward: selectedReward });
+        
+        window.location.href = `reward.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&reward=${encodeURIComponent(selectedReward)}`;
+      }, 500);
     }
   }
   
   animate();
 }
+
 function getSelectedSegment(rotation) {
   const segments = [
     '10% OFF',
@@ -254,26 +251,14 @@ function getSelectedSegment(rotation) {
     'Buy 2 Get 1'
   ];
   
-  // Normalize rotation to 0-2π range
   const normalizedRotation = rotation % (2 * Math.PI);
-  
-  // Calculate segment size
   const segmentAngle = (2 * Math.PI) / segments.length;
   
-  // The arrow points UP (top of wheel)
-  // We need to find which segment is at the top after rotation
-  // Segments start at -π/2 (top) and go clockwise
-  
-  // Calculate which segment is at the top (arrow position)
+  // Arrow points up - calculate which segment is at top
   let segmentAtTop = Math.floor((normalizedRotation + Math.PI / 2) / segmentAngle) % segments.length;
-  
-  // Adjust for clockwise rotation
   segmentAtTop = (segments.length - segmentAtTop) % segments.length;
   
-  console.log('Final rotation:', rotation);
-  console.log('Normalized rotation:', normalizedRotation);
-  console.log('Segment at top:', segmentAtTop);
-  console.log('Selected reward:', segments[segmentAtTop]);
+  console.log('Selected:', segments[segmentAtTop]);
   
   return segments[segmentAtTop];
 }
