@@ -229,10 +229,35 @@ function spin() {
       }
       
       setTimeout(() => {
-        window.location.href = 'reward.html';
-      }, 500);
+  // Get customer info from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const email = urlParams.get('email') || '';
+  const name = urlParams.get('name') || '';
+  
+  // Calculate which segment won
+  const selectedReward = getSelectedSegment(finalRotation);
+  
+  // Redirect with all info
+  window.location.href = `reward.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&reward=${encodeURIComponent(selectedReward)}`;
+}, 500);
     }
   }
   
   animate();
+}
+function getSelectedSegment(rotation) {
+  const segments = [
+    '10% OFF',
+    'Free Shipping',
+    '15% OFF',
+    'Free Protect Spray',
+    'Buy 2 Get 1'
+  ];
+  
+  const normalizedRotation = rotation % (2 * Math.PI);
+  const segmentAngle = (2 * Math.PI) / segments.length;
+  const adjustedRotation = (2 * Math.PI - normalizedRotation + Math.PI / 2) % (2 * Math.PI);
+  const selectedIndex = Math.floor(adjustedRotation / segmentAngle) % segments.length;
+  
+  return segments[selectedIndex];
 }
