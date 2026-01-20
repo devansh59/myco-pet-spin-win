@@ -263,13 +263,42 @@
     };
     document.getElementById('rewardEmoji').textContent = emojiMap[reward] || '🎁';
     
-    // Log for tracking (optional - you can add Google Sheets here later)
-    console.log('Reward claimed:', {
-      email: customerEmail,
-      name: customerName,
-      reward: reward,
-      timestamp: new Date().toISOString()
-    });
+    // ✅ LOG TO GOOGLE SHEETS
+    logToGoogleSheets(customerEmail, customerName, reward);
+    
+    function logToGoogleSheets(email, name, reward) {
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbwX5QEtsGTinY9H7OSG-9PX5bnlhL9KkE72cKtwzE4fNEZDQTsU-qSUf-p2ccPLq-hS/exec';
+      
+      const data = {
+        timestamp: new Date().toLocaleString('en-US', { 
+          timeZone: 'America/New_York',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }),
+        email: email,
+        name: name,
+        reward: reward
+      };
+      
+      fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        console.log('✅ Logged to Google Sheets:', data);
+      })
+      .catch(err => {
+        console.log('⚠️ Logging attempted:', data);
+      });
+    }
   </script>
 </body>
 </html>
