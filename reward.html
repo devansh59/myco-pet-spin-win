@@ -2,59 +2,274 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>You Won! 🏆</title>
-  <link rel="stylesheet" href="reward-style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Reward - Myco Pet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #E8F4FF 0%, #FFFFFF 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 127, 255, 0.2);
+      text-align: center;
+    }
+    
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      color: #007FFF;
+      font-size: 32px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    
+    .greeting {
+      font-size: 18px;
+      color: #005099;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    
+    .reward-box {
+      background: linear-gradient(135deg, #007FFF, #005099);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      margin: 30px 0;
+      box-shadow: 0 8px 25px rgba(0, 127, 255, 0.3);
+    }
+    
+    .reward-label {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+    
+    .reward-value {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 10px 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .reward-emoji {
+      font-size: 60px;
+      margin-top: 10px;
+    }
+    
+    .instructions {
+      background: #E8F4FF;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+    
+    .instructions h3 {
+      color: #005099;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .steps {
+      text-align: left;
+      margin: 20px 0;
+    }
+    
+    .step {
+      display: flex;
+      align-items: start;
+      margin: 15px 0;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+    }
+    
+    .step-number {
+      background: #007FFF;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    
+    .step-text {
+      color: #333;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 18px 45px;
+      background: #06d6a0;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(6, 214, 160, 0.4);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(6, 214, 160, 0.5);
+      background: #05c294;
+    }
+    
+    .note {
+      font-size: 14px;
+      color: #666;
+      margin-top: 25px;
+      padding: 15px;
+      background: #FFF9E6;
+      border-radius: 8px;
+      border-left: 4px solid #FFD93D;
+      text-align: left;
+    }
+    
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #E8F4FF;
+      color: #999;
+      font-size: 13px;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 26px;
+      }
+      
+      .reward-value {
+        font-size: 36px;
+      }
+      
+      .btn {
+        padding: 16px 35px;
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <canvas id="confetti"></canvas>
-  
-  <div class="floating-bg">
-    <span class="float">🏆</span>
-    <span class="float">⭐</span>
-    <span class="float">🍄</span>
-    <span class="float">🐾</span>
-    <span class="float">🏆</span>
-    <span class="float">⭐</span>
-  </div>
-  
-  <div class="page-wrapper">
-    <div class="container">
-      <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/a1803636-4eba-457d-af05-0150a4ce7129/2026-01-09T14-29-08-606Z-7b4f9f14-chat-image-1767968948586-0.jpg" alt="Myco Pet Logo" class="logo">
+  <div class="container">
+    
+    <h1>🎉 Congratulations<span id="nameDisplay"></span>!</h1>
+    
+    <p class="greeting">You've won an amazing reward!</p>
+    
+    <div class="reward-box">
+      <div class="reward-label">Your Prize:</div>
+      <div class="reward-value" id="rewardDisplay">Loading...</div>
+      <div class="reward-emoji" id="rewardEmoji">🎁</div>
+    </div>
+    
+    <div class="instructions">
+      <h3>📝 How to Claim Your Reward</h3>
       
-      <div class="badge">
-        <div class="glow"></div>
-        <span>🏆</span>
-      </div>
-      
-      <h1 class="title">
-        <span>Woof & Meow!</span>
-        <span class="highlight">Your Pet Just Won Big!</span>
-        <span>🎉🍄🐶🐱</span>
-      </h1>
-      
-      <p class="subtitle">Congratulations! 🎁 Your pet unlocked a special reward ✨</p>
-      
-      <div class="cta">
-        <div class="icon">💙</div>
-        <h2>Spread the Love</h2>
-        <p>Leave a review to claim your reward & help other pets! 🐾❤️</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-text">Click the button below to leave a quick review</div>
+        </div>
         
-        <a href="https://myco.pet/products/gut-immunity#judgeme" target="_blank" class="btn">
-          🎉 Claim Reward & Review 🎉
-        </a>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-text">Share your honest experience with Myco Pet products</div>
+        </div>
         
-        <div class="badges">
-          <span>✅ Verified</span>
-          <span>🍄 Natural</span>
-          <span>🐾 Pet Approved</span>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-text">We'll email your discount code within 24 hours after verifying your review!</div>
         </div>
       </div>
-      
-      <footer>Thank you for being part of <strong>Myco Pet</strong>! 🐕🐈🍄</footer>
     </div>
+    
+    <a href="https://myco.pet/products/gut-immunity#judgeme" id="reviewBtn" class="btn" target="_blank">⭐ Leave Review & Get Code</a>
+    
+    <div class="note">
+      <strong>💡 Important:</strong> Your discount code will be sent to <strong id="emailDisplay">your email</strong> after we verify your review. Please check your inbox within 24 hours!
+    </div>
+    
+    <div class="footer">
+      <p>🍄 Myco Pet - Unleash Vitality 💙</p>
+      <p>© 2024 Myco Pet. All rights reserved.</p>
+    </div>
+    
   </div>
-  
-  <script src="reward-script.js"></script>
+
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const customerEmail = urlParams.get('email') || '';
+    const customerName = urlParams.get('name') || '';
+    const reward = urlParams.get('reward') || '10% OFF';
+    
+    // Display customer name
+    if (customerName) {
+      document.getElementById('nameDisplay').textContent = ', ' + customerName;
+    }
+    
+    // Display email
+    if (customerEmail) {
+      document.getElementById('emailDisplay').textContent = customerEmail;
+    } else {
+      document.getElementById('emailDisplay').textContent = 'your email';
+    }
+    
+    // Display reward
+    document.getElementById('rewardDisplay').textContent = reward;
+    
+    // Set emoji based on reward
+    const emojiMap = {
+      '10% OFF': '🎉',
+      '15% OFF': '🎊',
+      'Free Shipping': '🚚',
+      'Free Protect Spray': '🧴',
+      'Buy 2 Get 1': '🎁'
+    };
+    document.getElementById('rewardEmoji').textContent = emojiMap[reward] || '🎁';
+    
+    // Log for tracking (optional - you can add Google Sheets here later)
+    console.log('Reward claimed:', {
+      email: customerEmail,
+      name: customerName,
+      reward: reward,
+      timestamp: new Date().toISOString()
+    });
+  </script>
 </body>
 </html>
