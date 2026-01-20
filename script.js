@@ -236,3 +236,30 @@ function spin() {
   
   animate();
 }
+// At the end of spin() function, replace:
+window.location.href = 'reward.html';
+
+// With:
+const selectedReward = getSelectedSegment(finalRotation);
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email') || '';
+const name = urlParams.get('name') || '';
+
+window.location.href = `reward.html?email=${email}&name=${name}&reward=${encodeURIComponent(selectedReward)}`;
+
+// Add this function to calculate which segment won:
+function getSelectedSegment(rotation) {
+  const segments = [
+    '10% OFF',
+    'Free Shipping',
+    '15% OFF',
+    'Free Protect Spray',
+    'Buy 2 Get 1'
+  ];
+  
+  const normalizedRotation = rotation % (2 * Math.PI);
+  const segmentAngle = (2 * Math.PI) / segments.length;
+  const selectedIndex = Math.floor((2 * Math.PI - normalizedRotation + segmentAngle / 2) / segmentAngle) % segments.length;
+  
+  return segments[selectedIndex];
+}
