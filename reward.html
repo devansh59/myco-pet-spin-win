@@ -31,11 +31,6 @@
       text-align: center;
     }
     
-    .logo {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-    
     h1 {
       color: #007FFF;
       font-size: 32px;
@@ -48,6 +43,47 @@
       color: #005099;
       margin-bottom: 30px;
       font-weight: 500;
+    }
+    
+    /* Email Form */
+    .email-form {
+      background: #E8F4FF;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 20px 0;
+    }
+    
+    .email-form h3 {
+      color: #005099;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    
+    .email-form input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid #007FFF;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+    
+    .email-form button {
+      width: 100%;
+      padding: 18px;
+      background: #007FFF;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .email-form button:hover {
+      background: #005099;
+      transform: translateY(-2px);
     }
     
     .reward-box {
@@ -164,6 +200,10 @@
       font-size: 13px;
     }
     
+    .hidden {
+      display: none;
+    }
+    
     @media (max-width: 600px) {
       .container {
         padding: 30px 20px;
@@ -176,57 +216,67 @@
       .reward-value {
         font-size: 36px;
       }
-      
-      .btn {
-        padding: 16px 35px;
-        font-size: 16px;
-      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     
-    <h1>🎉 Congratulations<span id="nameDisplay"></span>!</h1>
-    
-    <p class="greeting">You've won an amazing reward!</p>
-    
-    <div class="reward-box">
-      <div class="reward-label">Your Prize:</div>
-      <div class="reward-value" id="rewardDisplay">Loading...</div>
-      <div class="reward-emoji" id="rewardEmoji">🎁</div>
+    <!-- Email Capture Form (shows first) -->
+    <div id="emailCapture" class="email-form">
+      <h1 style="color:#007FFF;margin-bottom:20px;">🎉 Congratulations!</h1>
+      <h3>Enter your email to see your reward:</h3>
+      <p style="color:#666;margin-bottom:15px;font-size:15px;">We'll send your discount code to this email after you review!</p>
+      <form id="emailForm">
+        <input type="email" id="emailInput" placeholder="your@email.com" required>
+        <input type="text" id="nameInput" placeholder="Your Name (optional)">
+        <button type="submit">🎁 See My Reward</button>
+      </form>
     </div>
     
-    <div class="instructions">
-      <h3>📝 How to Claim Your Reward</h3>
+    <!-- Reward Display (shows after email entered) -->
+    <div id="rewardContent" class="hidden">
+      <h1>🎉 Congratulations<span id="nameDisplay"></span>!</h1>
       
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-text">Click the button below to leave a quick review</div>
-        </div>
+      <p class="greeting">You've won an amazing reward!</p>
+      
+      <div class="reward-box">
+        <div class="reward-label">Your Prize:</div>
+        <div class="reward-value" id="rewardDisplay">Loading...</div>
+        <div class="reward-emoji" id="rewardEmoji">🎁</div>
+      </div>
+      
+      <div class="instructions">
+        <h3>📝 How to Claim Your Reward</h3>
         
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-text">Share your honest experience with Myco Pet products</div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-text">We'll email your discount code within 24 hours after verifying your review!</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">Click the button below to leave a quick review</div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">Share your honest experience with Myco Pet products</div>
+          </div>
+          
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">We'll email your discount code within 24 hours after verifying your review!</div>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <a href="https://myco.pet/products/gut-immunity#judgeme" id="reviewBtn" class="btn" target="_blank">⭐ Leave Review & Get Code</a>
-    
-    <div class="note">
-      <strong>💡 Important:</strong> Your discount code will be sent to <strong id="emailDisplay">your email</strong> after we verify your review. Please check your inbox within 24 hours!
-    </div>
-    
-    <div class="footer">
-      <p>🍄 Myco Pet - Unleash Vitality 💙</p>
-      <p>© 2024 Myco Pet. All rights reserved.</p>
+      
+      <a href="https://myco.pet/products/gut-immunity#judgeme" id="reviewBtn" class="btn" target="_blank">⭐ Leave Review & Get Code</a>
+      
+      <div class="note">
+        <strong>💡 Important:</strong> Your discount code will be sent to <strong id="emailDisplay">your email</strong> after we verify your review. Please check your inbox within 24 hours!
+      </div>
+      
+      <div class="footer">
+        <p>🍄 Myco Pet - Unleash Vitality 💙</p>
+        <p>© 2024 Myco Pet. All rights reserved.</p>
+      </div>
     </div>
     
   </div>
@@ -234,69 +284,74 @@
   <script>
     // Get URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const customerEmail = urlParams.get('email') || '';
-    const customerName = urlParams.get('name') || '';
-    const reward = urlParams.get('reward') || '10% OFF';
+    let customerEmail = urlParams.get('email') || '';
+    let customerName = urlParams.get('name') || '';
+    const reward = urlParams.get('reward') || getRandomReward();
     
-    // Display customer name
-    if (customerName) {
-      document.getElementById('nameDisplay').textContent = ', ' + customerName;
-    }
-    
-    // Display email
+    // If email exists in URL, skip form
     if (customerEmail) {
-      document.getElementById('emailDisplay').textContent = customerEmail;
-    } else {
-      document.getElementById('emailDisplay').textContent = 'your email';
+      showReward();
     }
     
-    // Display reward
-    document.getElementById('rewardDisplay').textContent = reward;
+    // Handle form submission
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      customerEmail = document.getElementById('emailInput').value;
+      customerName = document.getElementById('nameInput').value || '';
+      showReward();
+    });
     
-    // Set emoji based on reward
-    const emojiMap = {
-      '10% OFF': '🎉',
-      '15% OFF': '🎊',
-      'Free Shipping': '🚚',
-      'Free Protect Spray': '🧴',
-      'Buy 2 Get 1': '🎁'
-    };
-    document.getElementById('rewardEmoji').textContent = emojiMap[reward] || '🎁';
+    function showReward() {
+      document.getElementById('emailCapture').classList.add('hidden');
+      document.getElementById('rewardContent').classList.remove('hidden');
+      
+      // Display customer name
+      if (customerName) {
+        document.getElementById('nameDisplay').textContent = ', ' + customerName;
+      }
+      
+      // Display email
+      document.getElementById('emailDisplay').textContent = customerEmail || 'your email';
+      
+      // Display reward
+      document.getElementById('rewardDisplay').textContent = reward;
+      
+      // Set emoji
+      const emojiMap = {
+        '10% OFF': '🎉',
+        '15% OFF': '🎊',
+        'Free Shipping': '🚚',
+        'Free Protect Spray': '🧴',
+        'Buy 2 Get 1': '🎁'
+      };
+      document.getElementById('rewardEmoji').textContent = emojiMap[reward] || '🎁';
+      
+      // Log to Google Sheets
+      logToGoogleSheets(customerEmail, customerName, reward);
+    }
     
-    // ✅ LOG TO GOOGLE SHEETS
-    logToGoogleSheets(customerEmail, customerName, reward);
+    function getRandomReward() {
+      const rewards = ['10% OFF', 'Free Shipping', '15% OFF', 'Free Protect Spray', 'Buy 2 Get 1'];
+      return rewards[Math.floor(Math.random() * rewards.length)];
+    }
     
     function logToGoogleSheets(email, name, reward) {
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbwX5QEtsGTinY9H7OSG-9PX5bnlhL9KkE72cKtwzE4fNEZDQTsU-qSUf-p2ccPLq-hS/exec';
       
-      const data = {
-        timestamp: new Date().toLocaleString('en-US', { 
-          timeZone: 'America/New_York',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        }),
-        email: email,
-        name: name,
-        reward: reward
-      };
-      
       fetch(scriptUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
-      .then(() => {
-        console.log('✅ Logged to Google Sheets:', data);
-      })
-      .catch(err => {
-        console.log('⚠️ Logging attempted:', data);
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          timestamp: new Date().toLocaleString(),
+          email: email,
+          name: name,
+          reward: reward
+        })
+      }).then(() => {
+        console.log('✅ Logged to Google Sheets');
+      }).catch(err => {
+        console.log('⚠️ Logging attempted');
       });
     }
   </script>
