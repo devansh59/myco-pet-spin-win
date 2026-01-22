@@ -199,6 +199,12 @@ function spin() {
   isSpinning = true;
   canvas.classList.add('spinning');
   
+  // ✅ PLAY SPINNING SOUND (Game-like)
+  const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3');
+  spinSound.volume = 0.4;
+  spinSound.loop = true;
+  spinSound.play().catch(err => console.log('Spin sound failed'));
+  
   if (navigator.vibrate) {
     navigator.vibrate(50);
   }
@@ -221,21 +227,26 @@ function spin() {
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
+      // ✅ STOP SPINNING SOUND
+      spinSound.pause();
+      spinSound.currentTime = 0;
+      
       if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
+      
+      const selectedReward = getSelectedSegment(finalRotation);
+      
+      // ✅ PLAY WIN SOUND
+      playWinSound();
       
       setTimeout(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email') || '';
         const name = urlParams.get('name') || '';
         
-        const selectedReward = getSelectedSegment(finalRotation);
-        
-        console.log('Redirecting:', { email, name, reward: selectedReward });
-        
         window.location.href = `reward.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&reward=${encodeURIComponent(selectedReward)}`;
-      }, 500);
+      }, 2000);
     }
   }
   
@@ -254,11 +265,19 @@ function getSelectedSegment(rotation) {
   const normalizedRotation = rotation % (2 * Math.PI);
   const segmentAngle = (2 * Math.PI) / segments.length;
   
-  // Arrow points up - calculate which segment is at top
   let segmentAtTop = Math.floor((normalizedRotation + Math.PI / 2) / segmentAngle) % segments.length;
   segmentAtTop = (segments.length - segmentAtTop) % segments.length;
   
   console.log('Selected:', segments[segmentAtTop]);
   
   return segments[segmentAtTop];
+}
+
+// ✅ WIN SOUND FUNCTION
+function playWinSound() {
+  const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
+  audio.volume = 0.8;
+  audio.play().catch(err => {
+    console.log('Win sound failed:', err);
+  });
 }
