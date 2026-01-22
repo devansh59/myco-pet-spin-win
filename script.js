@@ -200,7 +200,7 @@ function spin() {
   canvas.classList.add('spinning');
   
   // 🎰 SLOT MACHINE WIN ALERT SOUND
-  const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3');
+  const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2067/2067-preview.mp3');
   spinSound.volume = 0.5;
   spinSound.loop = true;
   spinSound.play().catch(err => console.log('Spin sound failed'));
