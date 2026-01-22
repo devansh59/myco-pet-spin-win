@@ -305,6 +305,9 @@
       document.getElementById('emailCapture').classList.add('hidden');
       document.getElementById('rewardContent').classList.remove('hidden');
       
+      // 💰 PLAY MELODIC GOLD PRICE SOUND
+      playCongratulationsSound();
+      
       // Display customer name
       if (customerName) {
         document.getElementById('nameDisplay').textContent = ', ' + customerName;
@@ -352,6 +355,15 @@
         console.log('✅ Logged to Google Sheets');
       }).catch(err => {
         console.log('⚠️ Logging attempted');
+      });
+    }
+    
+    // 💰 MELODIC GOLD PRICE SOUND FUNCTION
+    function playCongratulationsSound() {
+      const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/1999/1999-preview.mp3');
+      audio.volume = 0.8;
+      audio.play().catch(err => {
+        console.log('Congratulations sound failed:', err);
       });
     }
   </script>
