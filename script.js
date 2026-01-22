@@ -199,9 +199,9 @@ function spin() {
   isSpinning = true;
   canvas.classList.add('spinning');
   
-  // ✅ PLAY SPINNING SOUND (Game-like)
-  const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3');
-  spinSound.volume = 0.4;
+  // 🎰 SLOT MACHINE WIN ALERT SOUND
+  const spinSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3');
+  spinSound.volume = 0.5;
   spinSound.loop = true;
   spinSound.play().catch(err => console.log('Spin sound failed'));
   
@@ -227,7 +227,7 @@ function spin() {
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
-      // ✅ STOP SPINNING SOUND
+      // Stop slot machine sound
       spinSound.pause();
       spinSound.currentTime = 0;
       
@@ -237,16 +237,13 @@ function spin() {
       
       const selectedReward = getSelectedSegment(finalRotation);
       
-      // ✅ PLAY WIN SOUND
-      playWinSound();
-      
       setTimeout(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email') || '';
         const name = urlParams.get('name') || '';
         
         window.location.href = `reward.html?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&reward=${encodeURIComponent(selectedReward)}`;
-      }, 2000);
+      }, 500);
     }
   }
   
@@ -271,13 +268,4 @@ function getSelectedSegment(rotation) {
   console.log('Selected:', segments[segmentAtTop]);
   
   return segments[segmentAtTop];
-}
-
-// ✅ WIN SOUND FUNCTION
-function playWinSound() {
-  const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
-  audio.volume = 0.8;
-  audio.play().catch(err => {
-    console.log('Win sound failed:', err);
-  });
 }
