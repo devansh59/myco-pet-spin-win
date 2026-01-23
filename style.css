@@ -74,10 +74,11 @@ body {
 }
 
 .logo {
-  width: auto; 
   height: 100px;
-  max-width: 200px; 
+  width: auto;
+  max-width: 250px;
   margin-bottom: 15px;
+  display: block;
   filter: drop-shadow(0 3px 10px rgba(0, 127, 255, 0.2));
   animation: fadeIn 1s;
 }
