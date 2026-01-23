@@ -74,14 +74,13 @@ body {
 }
 
 .logo {
-  width: 120px;
-  height: auto;
-  max-width: 85%;
+  width: auto; 
+  height: 100px;
+  max-width: 200px; 
   margin-bottom: 15px;
   filter: drop-shadow(0 3px 10px rgba(0, 127, 255, 0.2));
   animation: fadeIn 1s;
 }
-
 .title {
   display: flex;
   flex-direction: column;
