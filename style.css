@@ -74,8 +74,8 @@ body {
 }
 
 .logo {
-  height: 150px; 
-  width: auto; 
+  width: 180px;
+  height: auto;
   max-width: 85%;
   margin-bottom: 15px;
   filter: drop-shadow(0 3px 10px rgba(0, 127, 255, 0.2));
